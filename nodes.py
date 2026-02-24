@@ -3,8 +3,8 @@ from langchain_groq import ChatGroq
 from prompts import EVENT_PROMPT, CONSEQUENCE_PROMPT
 from game_state import GameState
 from pydantic import BaseModel
-
-
+from dotenv import load_dotenv
+load_dotenv()
 class Consequence(BaseModel):
     reputation_delta: int
     cash_delta: int
@@ -12,16 +12,15 @@ class Consequence(BaseModel):
     narration: str
 
 
-llm = ChatGroq(model="openai/gpt-oss-120b",temperature=0.7,api_key="your grok api key here")
+llm = ChatGroq(model="openai/gpt-oss-120b",temperature=0.7)
 
-# 1️⃣ Generate Event
+
 def generate_event(state: GameState) -> GameState:
     response = llm.invoke(EVENT_PROMPT)
     state["current_event"] = response.content.strip()
     return state
 
 
-# 2️⃣ Player Choice (Terminal Input)
 def player_choice(state: GameState) -> GameState:
     print("\n==============================")
     print(f"ROUND {state['round']}")
@@ -107,7 +106,6 @@ def update_state(state: GameState) -> GameState:
     return state
 
 
-# 5️⃣ Check Status
 def check_status(state: GameState) -> GameState:
     if (
         state["reputation"] <= 0
@@ -125,5 +123,6 @@ def check_status(state: GameState) -> GameState:
 
     state["next_step"] = "generate_event"
     return state
+
 
 
