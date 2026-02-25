@@ -5,7 +5,6 @@
 Navigate escalating PR disasters. Make high-stakes executive decisions.  
 Control the narrative before the narrative controls you.
 
-Stateful event escalation • Decision branching • Reputation dynamics
 
 ---
 
@@ -42,6 +41,8 @@ cd The-PR-Apocalypse
 
 ### 2. Initialize project (only if starting fresh)
 
+In GitBash:
+
 ```bash
 uv init
 ```
@@ -62,9 +63,7 @@ GROQ_API_KEY=your_api_key_here
 
 ### 5. Run the game
 
-```bash
-uv run python main.py
-```
+just press run in the IDE for main.py
 
 ---
 
@@ -81,5 +80,6 @@ uv run python main.py
 ## License
 
 MIT
+
 
 
