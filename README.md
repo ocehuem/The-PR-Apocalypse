@@ -75,11 +75,6 @@ just press run in the IDE for main.py
 - LLM-driven narrative simulation
 - Decision-impact modeling
 
----
-
-## License
-
-MIT
 
 
 
