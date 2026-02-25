@@ -3,8 +3,8 @@ from langchain_groq import ChatGroq
 from prompts import EVENT_PROMPT, CONSEQUENCE_PROMPT
 from game_state import GameState
 from pydantic import BaseModel
-from dotenv import load_dotenv
-load_dotenv()
+
+
 class Consequence(BaseModel):
     reputation_delta: int
     cash_delta: int
@@ -12,17 +12,17 @@ class Consequence(BaseModel):
     narration: str
 
 
-llm = ChatGroq(model="openai/gpt-oss-120b",temperature=0.7)
-
+llm = ChatGroq(model="openai/gpt-oss-120b",temperature=0.7,api_key="your groq api key here")
 
 def generate_event(state: GameState) -> GameState:
-    response = llm.invoke(EVENT_PROMPT)
+    response = llm.invoke(EVENT_PROMPT+str(state["history"]))
     state["current_event"] = response.content.strip()
+    state["history"].append(state["current_event"])
     return state
 
 
 def player_choice(state: GameState) -> GameState:
-    print("\n==============================")
+    print("\n","="*30)
     print(f"ROUND {state['round']}")
     print(f"Reputation: {state['reputation']}")
     print(f"Cash: {state['cash']}")
@@ -61,38 +61,15 @@ def llm_consequence(state: GameState) -> GameState:
         print("\nInvalid JSON from model. Ending game.")
         state["next_step"] = "end"
         return state
-
-    # New absolute values from model
-    new_rep = data.get("reputation", state["reputation"])
-    new_cash = data.get("cash", state["cash"])
-    new_morale = data.get("morale", state["morale"])
-
-    # Compute deltas
-    state["reputation_delta"] = new_rep - state["reputation"]
-    state["cash_delta"] = new_cash - state["cash"]
-    state["morale_delta"] = new_morale - state["morale"]
-
+    state["cash"] = data.get("cash",0)
+    state["morale"] =data.get("morale",0)
+    state["reputation"]=data.get("reputation",0)
     state["narration"] = data.get("narration", "")
 
     return state
 
 def update_state(state: GameState) -> GameState:
 
-    def clamp_stat(x):
-        return max(0, min(100, x))
-
-    # Apply deltas
-    state["reputation"] = clamp_stat(
-        state["reputation"] + state["reputation_delta"]
-    )
-    state["cash"] = clamp_stat(
-        state["cash"] + state["cash_delta"]
-    )
-    state["morale"] = clamp_stat(
-        state["morale"] + state["morale_delta"]
-    )
-
-    state["history"].append(state["narration"])
     state["round"] += 1
 
     print("\nOutcome:")
@@ -123,6 +100,5 @@ def check_status(state: GameState) -> GameState:
 
     state["next_step"] = "generate_event"
     return state
-
 
 

@@ -13,7 +13,6 @@ from nodes import (
 
 load_dotenv()
 
-# Initial State
 initial_state: GameState = {
     "reputation": 50,
     "cash": 50,
@@ -22,15 +21,11 @@ initial_state: GameState = {
     "history": [],
     "current_event": "",
     "last_choice": "",
-    "reputation_delta": 0,
-    "cash_delta": 0,
-    "morale_delta": 0,
     "narration": "",
     "next_step": "generate_event",
 }
 
 
-# Build Graph
 builder = StateGraph(GameState)
 
 builder.add_node("generate_event", generate_event)

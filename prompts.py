@@ -11,10 +11,10 @@ Return exactly 3 bullet points. No quotes. No extra commentary. No numbering. No
 CRISIS RULES:
 - Each round must use a DIFFERENT crisis category.
 - Rotate between tones: serious, absurd, ironic, dramatic, chaotic, awkward, mildly funny.
-- Do NOT repeat themes like data breach, generic hacking, or vague “legal trouble.”
 - Make the situation specific and visual.
 
 Generate one scenario now.
+Below are the previous scenarios,dont repeat the theme/tone from them(both company and description)
 """
 
 CONSEQUENCE_PROMPT = """
@@ -30,6 +30,8 @@ Event:
 
 Player Action:
 {choice}
+
+consider the role of the player and see if this action player took is appropriate or not also 
 
 Rules:
 - Return STRICT JSON
