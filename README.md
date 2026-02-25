@@ -54,7 +54,7 @@ uv sync
 
 ### 4. Add environment variables
 
-Create a `.env` file in the root directory:
+Create a `.env` file in the root directory or add api key in the nodes.py in the space given 
 
 ```env
 GROQ_API_KEY=your_api_key_here
@@ -81,3 +81,4 @@ uv run python main.py
 ## License
 
 MIT
+
