@@ -23,7 +23,7 @@ Stateful event escalation • Decision branching • Reputation dynamics
 
 ## Development Environment
 
-- IDE: PyCharm
+- IDE: PyCharm/vscode
 - Shell: Git Bash
 - Dependency Manager: uv
 
@@ -81,4 +81,5 @@ uv run python main.py
 ## License
 
 MIT
+
 
