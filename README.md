@@ -9,6 +9,9 @@
 Navigate escalating PR disasters. Make high-stakes executive decisions.  
 Control the narrative before the narrative controls you.
 
+
+---
+
 ### Nodes
 
 - `generate_event` → Creates new crisis scenario
@@ -94,5 +97,3 @@ GROQ_API_KEY=your_api_key_here
 ### 5. Run the game
 
 just press run in the IDE for main.py
-
----
