@@ -2,9 +2,39 @@
 
 **The PR Apocalypse** is an LLM-powered corporate crisis simulation built with LangGraph and Groq.
 
+- The game loop is built using **LangGraph's StateGraph**, which enables structured, stateful execution between nodes.
+
+- LLM used for event + consequence generation
+
 Navigate escalating PR disasters. Make high-stakes executive decisions.  
 Control the narrative before the narrative controls you.
 
+### Nodes
+
+- `generate_event` → Creates new crisis scenario
+- `player_choice` → Captures player decision
+- `llm_consequence` → LLM calculates impact
+- `update_state` → Applies numerical deltas
+- `check_status` → Determines continuation or termination
+
+
+---
+
+## Execution Flow
+
+```
+generate_event
+      ↓
+player_choice
+      ↓
+llm_consequence
+      ↓
+update_state
+      ↓
+check_status
+      ↓
+(generate_event OR END)
+```
 
 ---
 
@@ -67,13 +97,6 @@ just press run in the IDE for main.py
 
 ---
 
-## What This Project Demonstrates
-
-- Stateful AI game design
-- Structured prompt engineering
-- LangGraph workflow orchestration
-- LLM-driven narrative simulation
-- Decision-impact modeling
 
 
 
