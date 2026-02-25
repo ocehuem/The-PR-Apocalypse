@@ -63,7 +63,6 @@ check_status
 
 ## Installation & Setup
 
-Download pycharm IDE
 
 ### 1. Clone the repository
 
@@ -96,4 +95,7 @@ GROQ_API_KEY=your_api_key_here
 
 ### 5. Run the game
 
-just press run in the IDE for main.py
+```bash
+uv run main.py
+```
+
