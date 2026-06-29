@@ -73,13 +73,17 @@ cd The-PR-Apocalypse
 
 ### 2. Initialize project (only if starting fresh)
 
-In GitBash:
 
-```bash
-uv init
-```
 
 ### 3. Install dependencies
+Install uv (one-time setup)
+
+In GitBash:
+
+pip install uv
+
+
+Note: This project is already initialized with a pyproject.toml, so you do not need to run uv init.
 
 ```bash
 uv sync
