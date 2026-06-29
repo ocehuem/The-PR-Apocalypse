@@ -76,6 +76,8 @@ cd The-PR-Apocalypse
 
 
 ### 3. Install dependencies
+
+Install python 
 Install uv (one-time setup)
 
 In GitBash:
